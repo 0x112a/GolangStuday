@@ -7,19 +7,19 @@ import (
 	"strings"
 )
 
-func solution(line string) string {
+func Solution(line string) string {
 	// please write your code here
 	//var a string
 	s := strings.Split(line, "")
-	m,i:=0,0
-	for _,t := range s{
-		if t=="m" {
+	m, i := 0, 0
+	for _, t := range s {
+		if t == "m" {
 			m++
-		} else if t == "i"{
+		} else if t == "i" {
 			i++
 		}
 	}
-	for t :=0;t<m||t<i;t++ {
+	for t := 0; t < m || t < i; t++ {
 		line = findmi(line)
 	}
 	//aws+=sline[]
@@ -28,19 +28,19 @@ func solution(line string) string {
 	// return ans
 }
 
-func findmi(line string) string{
+func findmi(line string) string {
 	var aws string
 
-	sline := strings.Split(line,"")
+	sline := strings.Split(line, "")
 	//fmt.Printf("%T\t%v",line,line[2])
-	for i:=0;i<len(sline);i++{
-		if i==len(sline)-1 {
-			aws+=sline[i]
-		}else if sline[i] !="m"{
+	for i := 0; i < len(sline); i++ {
+		if i == len(sline)-1 {
 			aws += sline[i]
-		}else if sline[i+1] != "i"{
+		} else if sline[i] != "m" {
 			aws += sline[i]
-		}else {
+		} else if sline[i+1] != "i" {
+			aws += sline[i]
+		} else {
 			i++
 		}
 	}
@@ -50,6 +50,6 @@ func findmi(line string) string{
 func main() {
 	r := bufio.NewReaderSize(os.Stdin, 20480)
 	for line, _, err := r.ReadLine(); err == nil; line, _, err = r.ReadLine() {
-		fmt.Println(solution(string(line)))
+		fmt.Println(Solution(string(line)))
 	}
 }
